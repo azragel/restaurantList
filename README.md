@@ -26,7 +26,7 @@
  ## Installing 如何安裝
   ### 1.開啟終端機terminal，複製此專案至本地端
   ```
-  git clone 
+  git clone https://github.com/azragel/restaurantList.git
   ```
 
   ### 2.進入專案資料夾
