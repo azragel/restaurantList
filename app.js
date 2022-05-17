@@ -3,6 +3,22 @@ const express = require('express')
 const app = express()
 const port = 3000
 
+// 啟動mongoDB套件mongoose
+const mongoose=require('mongoose')
+mongoose.connect('mongodb+srv://azragel:1035@cluster0.dqqcx.mongodb.net/restaurant-list?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
+
+// 資料庫連線設定
+const db=mongoose.connection
+
+db.on('error',()=>{
+  console.log('mongodb error!')
+})
+
+db.once('open',()=>{
+  console.log('mongodb connected')
+})
+
+
 // 啟動handlebars套件
 const exphandlebar = require('express-handlebars')
 
