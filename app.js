@@ -3,6 +3,10 @@ const express = require('express')
 const app = express()
 const port = 3000
 
+// 載入資料庫model
+const restaurants = require('./models/restaurant')
+
+
 // 啟動mongoDB套件mongoose
 const mongoose=require('mongoose')
 mongoose.connect('mongodb+srv://azragel:1035@cluster0.dqqcx.mongodb.net/restaurant-list?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
@@ -27,8 +31,7 @@ app.engine('handlebars', exphandlebar({ defaultLayout: 'main' }))
 // 定義view engine為handlebars  
 app.set('view engine', 'handlebars')
 
-// 讀取restaurant.json檔
-const restaurants = require('./restaurant.json')
+
 
 
 // 設定靜態檔案
@@ -37,7 +40,12 @@ app.use(express.static('public'))
 // 路由情境設定
 // 1.初始頁面 
 app.get('/', (req, res) => {
-  res.render('index', { restaurants: restaurants.results })
+  restaurants.find() // 取出 Todo model 裡的所有資料
+  .lean() // 把 Mongoose 的 Model 物件轉換成乾淨的 JavaScript 資料陣列
+  .then(restaurants=>res.render('index',{restaurants}))
+  .catch(error=>console.log(error))
+
+  
 })
 
 // 2.介紹頁面
