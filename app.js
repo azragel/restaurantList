@@ -3,6 +3,10 @@ const express = require('express')
 const app = express()
 const port = 3000
 
+// 使用body-parser給post方法抓取body資料
+app.use(express.urlencoded({ extended: true }))
+
+
 // 載入資料庫model
 const restaurants = require('./models/restaurant')
 
@@ -50,21 +54,27 @@ app.get('/', (req, res) => {
 
 // 2.介紹頁面
 app.get('/restaurants/:restaID', (req, res) => {
-  const restaurantChoose = restaurants.results.find((restaurant) => {
-    return restaurant.id.toString() === req.params.restaID
-  })
-  res.render('show', { restaurants: restaurantChoose })
+  const id=req.params.restaID
+  // const restaurantChoose = restaurants.find((restaurant) => {
+  //   return restaurant.id.toString() === req.params.restaID
+  // })
+  return restaurants.findById(id)
+  .lean()
+  .then(restaurants=>res.render('show',{restaurants}))
+  .catch(error=>console.log(error))
+  // res.render('show', { restaurants: restaurantChoose })
 })
 
 // 3.搜尋功能
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
-  const restaSearch = restaurants.results.filter((restaurant) => {
+  
+  return restaurants.find({$or:[{ 'name': { '$regex': keyword, $options: '$i' } }, { 'category': { '$regex': keyword, $options: '$i' } }]})
+  .lean()
+  .then(restaurants => res.render('index', { restaurants, keyword }))
+  .catch(error=>console.log(error))
 
-    return restaurant.name.toLowerCase().includes(keyword.toLowerCase()) || restaurant.category.toLowerCase().includes(keyword.toLowerCase())
-  })
-
-  res.render('index', { restaurants: restaSearch, keyword: keyword })
+  
 })
 
 // 伺服器啟動事件監聽 
