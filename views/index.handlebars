@@ -1,6 +1,7 @@
 {{!-- views/index.handlebars --}}
 
-<a href="./new">create</a>
+
+
 
 <!-- search bar -->
 <div class="container search-bar">
@@ -18,6 +19,13 @@
       </form>
     </div>
   </div>
+</div>
+
+<div class="container">
+  <div class="position-relative">
+    <a href="./new" class="position-absolute position-fixed start-100"><i class="fas fa-plus-circle fa-4x" style="color: rgb(62, 237, 39);"></i></a>
+  </div>
+
 </div>
 
 <!-- restaurant list -->
@@ -47,9 +55,25 @@
             </div>
           </div>
         </a>
-        <div class="mb-5">
-          <a href="./restaurants/{{ this._id }}" >detail</a>
-          <a href="./restaurants/{{ this._id }}/edit">edit</a>
+        
+        <div class="card-footer row mb-5 justify-content-end w-100">
+          <div class="col-3 my-auto">
+            <a href="./restaurants/{{ this._id }}" >detail</a>
+          </div>
+
+          <div class="col-2 my-auto ">
+            <a href="./restaurants/{{ this._id }}/edit">edit</a>
+          </div>
+          
+          <div class="col-2">
+            <form action="./restaurants/{{ this._id }}/delete" method="POST" >
+            <button type="submit">delete</button>
+            </form>
+          </div>
+            
+          
+          
+
         </div>
         
 

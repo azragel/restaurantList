@@ -104,7 +104,7 @@ app.get('/restaurants/:restaID/edit', (req, res) => {
 
   return restaurants.findById(id)
     .lean()
-    .then(restaurants => res.render('edit', { restaurants }))
+    .then(restaurants=> res.render('edit', { restaurants }))
     .catch(error => console.log(error))
 
 })
@@ -132,7 +132,14 @@ app.post('/restaurants/:restaID/edit', (req, res) => {
 
 })
 
-
+// 6.刪除餐廳資訊
+app.post('/restaurants/:restaID/delete', (req, res) => {
+  const id = req.params.restaID
+  return restaurants.findById(id)
+    .then(restaurants => restaurants.remove())
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
 
 
 // 伺服器啟動事件監聽 
