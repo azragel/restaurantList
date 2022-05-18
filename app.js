@@ -98,6 +98,43 @@ app.post('/restaurants',(req,res)=>{
   .catch(error=>console.log(error))
 })
 
+// 5.編輯餐廳資訊頁面
+app.get('/restaurants/:restaID/edit', (req, res) => {
+  const id = req.params.restaID
+
+  return restaurants.findById(id)
+    .lean()
+    .then(restaurants => res.render('edit', { restaurants }))
+    .catch(error => console.log(error))
+
+})
+
+app.post('/restaurants/:restaID/edit', (req, res) => {
+  const id = req.params.restaID
+  const restaurantUpdate = req.body
+
+  return restaurants.findById(id)
+    .then(restaurants =>{
+      restaurants.name=restaurantUpdate.name
+      restaurants.name_en=restaurantUpdate.name_en
+      restaurants.category=restaurantUpdate.category
+      restaurants.image=restaurantUpdate.image
+      restaurants.location=restaurantUpdate.location
+      restaurants.phone=restaurantUpdate.phone
+      restaurants.google_map=restaurantUpdate.google_map
+      restaurants.rating=restaurantUpdate.rating
+      restaurants.description=restaurantUpdate.description
+      return restaurants.save()
+
+    })
+    .then(()=>res.redirect(`/restaurants/${id}`))
+    .catch(error => console.log(error))
+
+})
+
+
+
+
 // 伺服器啟動事件監聽 
 app.listen(port, () => {
   console.log(`restaurant server is now active on http://localhost:${port}`)
