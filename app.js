@@ -55,14 +55,12 @@ app.get('/', (req, res) => {
 // 2.介紹頁面
 app.get('/restaurants/:restaID', (req, res) => {
   const id=req.params.restaID
-  // const restaurantChoose = restaurants.find((restaurant) => {
-  //   return restaurant.id.toString() === req.params.restaID
-  // })
+  
   return restaurants.findById(id)
   .lean()
   .then(restaurants=>res.render('show',{restaurants}))
   .catch(error=>console.log(error))
-  // res.render('show', { restaurants: restaurantChoose })
+  
 })
 
 // 3.搜尋功能
@@ -75,6 +73,29 @@ app.get('/search', (req, res) => {
   .catch(error=>console.log(error))
 
   
+})
+
+// 4.餐廳新增頁面
+app.get('/new',(req,res)=>{
+  return res.render('new')
+})
+
+app.post('/restaurants',(req,res)=>{
+  const restaurantNew= req.body
+  
+  return restaurants.create({
+    name:`${restaurantNew.name}`,
+    name_en: `${restaurantNew.name_en}`,
+    category: `${restaurantNew.category}`,
+    image: `${restaurantNew.image}`,
+    location: `${restaurantNew.location}`,
+    phone: `${restaurantNew.phone}`,
+    google_map: `${restaurantNew.google_map}`,
+    rating: `${restaurantNew.rating}`,
+    description: `${restaurantNew.description}`
+  })
+  .then(()=>res.redirect('/'))
+  .catch(error=>console.log(error))
 })
 
 // 伺服器啟動事件監聽 
