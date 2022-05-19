@@ -8,6 +8,9 @@
   * 使用者可以再點進去看餐廳的詳細資訊
   * 使用者可以透過搜尋餐廳名稱來找到特定的餐廳
   * 使用者可以透過搜尋餐廳類別來找到特定的餐廳
+  * 使用者可以新增餐廳資訊
+  * 使用者可以編輯餐廳資訊
+  * 使用者可以刪除餐廳資訊
 
  
 
@@ -21,6 +24,8 @@
   * fontawesome 5.8.1
   * bootstrap 4.3.1
   * popper.js 1.14.7
+  * mongoose 5.9.7
+ 
 
 
  ## Installing 如何安裝
@@ -43,13 +48,25 @@
   ```
   npm install nodemon
   ```
-  ### 5.啟動伺服器
+  
+  ### 5.設定環境變數MONGODB_URI
   ```
-  nodemon app.js
+  set "MONGODB_URI=你的資料庫連接字串"
+  ```
+
+  ### 6.載入種子數據
+  ```
+  npm run seed
+  ```
+
+  ### 7.啟動伺服器
+  ```
+  npm run dev
   ```
   終端機顯示restaurant server is now active on http://localhost:3000 表示成功啟動
+  終端機顯示mongodb connected 表示資料庫連結成功
 
-  ### 6.在瀏覽器上鍵入網址 http://localhost:3000/
+  ### 8.在瀏覽器上鍵入網址 http://localhost:3000/
   開始使用網站
   
 

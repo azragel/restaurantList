@@ -3,7 +3,7 @@ const restaurant = require('../restaurant')
 const restaurantJSON= require('../../restaurant.json')
 const restaurantData=restaurantJSON.results
 
-mongoose.connect('mongodb+srv://azragel:1035@cluster0.dqqcx.mongodb.net/restaurant-list?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const db = mongoose.connection
 

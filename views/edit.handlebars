@@ -1,19 +1,126 @@
 <div class="container">
-  <div class="row">
-    <div class="col-1 ">
+  <div class="row justify-content-center">
+    <div class="col-4 ">
       <form action="/restaurants/{{restaurants._id}}/edit" method="post">
-        <input type="text" placeholder="name" name="name" value="{{restaurants.name}}">
-        <input type="text" placeholder="name_en" name="name_en" value="{{restaurants.name_en}}">
-        <input type="text" placeholder="category" name="category" value="{{restaurants.category}}">
-        <input type="text" placeholder="image" name="image" value="{{restaurants.image}}">
-        <input type="text" placeholder="location" name="location" value="{{restaurants.location}}">
-        <input type="text" placeholder="phone" name="phone" value="{{restaurants.phone}}">
-        <input type="text" placeholder="google_map" name="google_map" value="{{restaurants.google_map}}">
-        <input type="text" placeholder="rating" name="rating" value="{{restaurants.rating}}">
-        <input type="text" placeholder="description" name="description" value="{{restaurants.description}}">
 
-        <button type="submit">save</button>
-        <a href="/">back</a>
+      <div class="row align-items-center">
+      
+      
+        <label for="name" class="col-md-8 mt-2">Name</label>
+      
+        <div class="col-md-4 ">
+          <input type="text" placeholder="name" name="name" value="{{restaurants.name}}">
+        </div>
+      
+      </div>
+
+      <div class="row align-items-center">
+      
+      
+        <label for="name" class="col-md-8 mt-2">Name_en</label>
+      
+        <div class="col-md-4 ">
+          <input type="text" placeholder="name_en" name="name_en" value="{{restaurants.name_en}}">
+        </div>
+      
+      </div>
+
+      <div class="row align-items-center">
+      
+      
+        <label for="name" class="col-md-8 mt-2">Category</label>
+      
+        <div class="col-md-4 ">
+          <input type="text" placeholder="category" name="category" value="{{restaurants.category}}">
+        </div>
+      
+      </div>
+
+      <div class="row align-items-center">
+      
+      
+        <label for="name" class="col-md-8 mt-2">Image</label>
+      
+        <div class="col-md-4 ">
+          <input type="text" placeholder="image" name="image" value="{{restaurants.image}}">
+        </div>
+      
+      </div>
+
+      <div class="row align-items-center">
+      
+      
+        <label for="name" class="col-md-8 mt-2">Location</label>
+      
+        <div class="col-md-4 ">
+          <input type="text" placeholder="location" name="location" value="{{restaurants.location}}">
+        </div>
+      
+      </div>
+
+      <div class="row align-items-center">
+      
+      
+        <label for="name" class="col-md-8 mt-2">Phone</label>
+      
+        <div class="col-md-4 ">
+          <input type="text" placeholder="phone" name="phone" value="{{restaurants.phone}}">
+        </div>
+      
+      </div>
+
+      <div class="row align-items-center">
+      
+      
+        <label for="name" class="col-md-8 mt-2">Google_map</label>
+      
+        <div class="col-md-4 ">
+          <input type="text" placeholder="google_map" name="google_map" value="{{restaurants.google_map}}">
+        </div>
+      
+      </div>
+
+      <div class="row align-items-center">
+      
+      
+        <label for="name" class="col-md-8 mt-2">Rating</label>
+      
+        <div class="col-md-4 ">
+          <input type="text" placeholder="rating" name="rating" value="{{restaurants.rating}}">
+        </div>
+      
+      </div>
+
+      <div class="row align-items-center">
+      
+      
+        <label for="name" class="col-md-8 mt-2">Description</label>
+      
+        <div class="col-md-4 ">
+          <input type="text" placeholder="description" name="description" value="{{restaurants.description}}">
+        </div>
+      
+      </div>
+      
+      
+      <div class="d-flex justify-content-md-end mt-3" style="width: 440px; ;">
+        
+        <button type="submit" class="btn btn-primary mx-1">save</button>
+        <a href="/" class="my-auto">back</a>
+      </div>
+
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
 
 
       </form>

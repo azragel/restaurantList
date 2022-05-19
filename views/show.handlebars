@@ -35,10 +35,10 @@
         {{restaurants.description}}
       </p>
       
-      <a href="/restaurants/{{ restaurants._id }}/edit">edit</a>
-      <a href="/">back</a>
+      <a href="/restaurants/{{ restaurants._id }}/edit" class="my-auto">edit</a>
+      <a href="/" class="my-auto">back</a>
       <form action="/restaurants/{{ restaurants._id }}/delete" method="POST" style="display: inline;">
-        <button type="submit">delete</button>
+        <button type="submit" class="btn btn-outline-danger">delete</button>
       </form>
 
       <img class="rounded mx-auto d-block mb-4 w-100" src="{{restaurants.image}}" alt="{{restaurants.name}}"
