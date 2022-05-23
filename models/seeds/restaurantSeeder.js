@@ -30,7 +30,10 @@ db.once('open', () => {
     
 
   }
-
-  console.log('done')
+  
+}).then(() => {
+  console.log("restaurantSeeder done!")
 })
+  .catch(err => console.log(err))
+  .finally(() => db.close())
 

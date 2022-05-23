@@ -10,6 +10,10 @@ app.use(express.urlencoded({ extended: true }))
 const methodOverride = require('method-override')
 
 
+// 引用路由器
+const routes=require('./routes')
+
+
 // 載入資料庫model
 const restaurants = require('./models/restaurant')
 
@@ -47,27 +51,14 @@ app.use(express.static('public'))
 // 讓每筆請求透過method-override進行前置處理
 app.use(methodOverride('_method'))
 
+
+app.use(routes)
 // 路由情境設定
-// 1.初始頁面 
-app.get('/', (req, res) => {
-  restaurants.find() // 取出 Todo model 裡的所有資料
-  .lean() // 把 Mongoose 的 Model 物件轉換成乾淨的 JavaScript 資料陣列
-  .then(restaurants=>res.render('index',{restaurants}))
-  .catch(error=>console.log(error))
 
-  
-})
 
-// 2.介紹頁面
-app.get('/restaurants/:restaID', (req, res) => {
-  const id=req.params.restaID
-  
-  return restaurants.findById(id)
-  .lean()
-  .then(restaurants=>res.render('show',{restaurants}))
-  .catch(error=>console.log(error))
-  
-})
+
+
+
 
 // 3.搜尋功能
 app.get('/search', (req, res) => {
@@ -81,71 +72,8 @@ app.get('/search', (req, res) => {
   
 })
 
-// 4.餐廳新增頁面
-app.get('/new',(req,res)=>{
-  return res.render('new')
-})
 
-app.post('/restaurants',(req,res)=>{
-  const restaurantNew= req.body
-  
-  return restaurants.create({
-    name:`${restaurantNew.name}`,
-    name_en: `${restaurantNew.name_en}`,
-    category: `${restaurantNew.category}`,
-    image: `${restaurantNew.image}`,
-    location: `${restaurantNew.location}`,
-    phone: `${restaurantNew.phone}`,
-    google_map: `${restaurantNew.google_map}`,
-    rating: `${restaurantNew.rating}`,
-    description: `${restaurantNew.description}`
-  })
-  .then(()=>res.redirect('/'))
-  .catch(error=>console.log(error))
-})
 
-// 5.編輯餐廳資訊頁面
-app.get('/restaurants/:restaID/edit', (req, res) => {
-  const id = req.params.restaID
-
-  return restaurants.findById(id)
-    .lean()
-    .then(restaurants=> res.render('edit', { restaurants }))
-    .catch(error => console.log(error))
-
-})
-
-app.put('/restaurants/:restaID', (req, res) => {
-  const id = req.params.restaID
-  const restaurantUpdate = req.body
-
-  return restaurants.findById(id)
-    .then(restaurants =>{
-      restaurants.name=restaurantUpdate.name
-      restaurants.name_en=restaurantUpdate.name_en
-      restaurants.category=restaurantUpdate.category
-      restaurants.image=restaurantUpdate.image
-      restaurants.location=restaurantUpdate.location
-      restaurants.phone=restaurantUpdate.phone
-      restaurants.google_map=restaurantUpdate.google_map
-      restaurants.rating=restaurantUpdate.rating
-      restaurants.description=restaurantUpdate.description
-      return restaurants.save()
-
-    })
-    .then(()=>res.redirect(`/restaurants/${id}`))
-    .catch(error => console.log(error))
-
-})
-
-// 6.刪除餐廳資訊
-app.delete('/restaurants/:restaID', (req, res) => {
-  const id = req.params.restaID
-  return restaurants.findById(id)
-    .then(restaurants => restaurants.remove())
-    .then(() => res.redirect('/'))
-    .catch(error => console.log(error))
-})
 
 
 // 伺服器啟動事件監聽 
