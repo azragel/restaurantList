@@ -18,5 +18,17 @@ router.get('/new', (req, res) => {
   return res.render('new')
 })
 
+// 3.搜尋功能
+router.get('/search', (req, res) => {
+  const keyword = req.query.keyword
+
+  return restaurants.find({ $or: [{ 'name': { '$regex': keyword, $options: '$i' } }, { 'category': { '$regex': keyword, $options: '$i' } }] })
+    .lean()
+    .then(restaurants => res.render('index', { restaurants, keyword }))
+    .catch(error => console.log(error))
+
+
+})
+
 
 module.exports=router
