@@ -6,6 +6,9 @@ const port = 3000
 // 使用body-parser給post方法抓取body資料
 app.use(express.urlencoded({ extended: true }))
 
+// 載入method-override
+const methodOverride = require('method-override')
+
 
 // 載入資料庫model
 const restaurants = require('./models/restaurant')
@@ -13,7 +16,7 @@ const restaurants = require('./models/restaurant')
 
 // 啟動mongoDB套件mongoose
 const mongoose=require('mongoose')
-mongoose.connect('mongodb+srv://azragel:1035@cluster0.dqqcx.mongodb.net/restaurant-list?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 // 資料庫連線設定
 const db=mongoose.connection
@@ -40,6 +43,9 @@ app.set('view engine', 'handlebars')
 
 // 設定靜態檔案
 app.use(express.static('public'))
+
+// 讓每筆請求透過method-override進行前置處理
+app.use(methodOverride('_method'))
 
 // 路由情境設定
 // 1.初始頁面 
@@ -109,7 +115,7 @@ app.get('/restaurants/:restaID/edit', (req, res) => {
 
 })
 
-app.post('/restaurants/:restaID/edit', (req, res) => {
+app.put('/restaurants/:restaID', (req, res) => {
   const id = req.params.restaID
   const restaurantUpdate = req.body
 
@@ -133,7 +139,7 @@ app.post('/restaurants/:restaID/edit', (req, res) => {
 })
 
 // 6.刪除餐廳資訊
-app.post('/restaurants/:restaID/delete', (req, res) => {
+app.delete('/restaurants/:restaID', (req, res) => {
   const id = req.params.restaID
   return restaurants.findById(id)
     .then(restaurants => restaurants.remove())
