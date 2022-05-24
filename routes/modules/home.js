@@ -14,21 +14,37 @@ router.get('/', (req, res) => {
 
 })
 
-router.get('/new', (req, res) => {
-  return res.render('new')
-})
-
-// 3.搜尋功能
+// 搜尋功能
 router.get('/search', (req, res) => {
   const keyword = req.query.keyword
+  const sort=req.query.sort
+  console.log(sort)
+
+  const sortMethod={
+    default:{_id: 1},
+    name_asc:{name:1},
+    name_desc:{name:-1},
+    category_asc:{category:1},
+    location_asc:{location:1}
+
+  }
 
   return restaurants.find({ $or: [{ 'name': { '$regex': keyword, $options: '$i' } }, { 'category': { '$regex': keyword, $options: '$i' } }] })
     .lean()
+    .sort(sortMethod[sort])
     .then(restaurants => res.render('index', { restaurants, keyword }))
     .catch(error => console.log(error))
 
 
 })
+
+router.get('/new', (req, res) => {
+
+  return res.render('new')
+    
+})
+
+
 
 
 module.exports=router

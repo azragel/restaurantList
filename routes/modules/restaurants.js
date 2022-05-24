@@ -3,6 +3,11 @@ const router = express.Router()
 const restaurants = require('../../models/restaurant')
 
 
+
+
+
+
+
 // 介紹頁面
 router.get('/:restaID', (req, res) => {
   const id = req.params.restaID
@@ -16,6 +21,11 @@ router.get('/:restaID', (req, res) => {
 
 // 餐廳新增頁面
 
+// router.get('/new', (req, res) => {
+  
+//   return res.render('new')
+//   
+// })
 
 router.post('/', (req, res) => {
   const restaurantNew = req.body

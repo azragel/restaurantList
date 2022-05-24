@@ -7,27 +7,27 @@ const restaurantSchema=new Schema({
   },
   name_en:{
     type:String,
-    require: false
+    
   },
   category:{
     type:String,
-    require: false
+    require: true
   },
   image:{
     type: String,
-    require: false
+    
   },
   location:{
     type: String,
-    require: false
+    require: true
   },
   phone:{
     type: String,
-    require: false
+    
   },
   google_map:{
     type: String,
-    require: false
+    
   },
   rating:{
     type: Number,
@@ -35,7 +35,7 @@ const restaurantSchema=new Schema({
   },
   description:{
     type: String,
-    require: true
+    
   }
 
 })
