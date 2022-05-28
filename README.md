@@ -2,6 +2,8 @@
 用來蒐集喜愛餐廳資料的網站
 ![MyImage](./index.jpg)
 ![MyImage](./show.jpg)
+![MyImage](./detail.jpg)
+
 
  ## Features 產品功能
   * 使用者可以在首頁看到所有餐廳與它們的簡單資料
