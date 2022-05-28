@@ -6,10 +6,10 @@
       <div class="row align-items-center">
 
         
-        <label for="name" class="col-md-8 mt-2">Name</label>
+        <label for="name" class="col-md-8 mt-2">Name*</label>
         
         <div class="col-md-4 ">
-        <input type="text" placeholder="name" name="name" >
+        <input type="text" placeholder="name" name="name" required>
         </div>
 
       </div>
@@ -40,10 +40,10 @@
       <div class="row align-items-center">
       
       
-        <label for="name" class="col-md-8 mt-2">Image</label>
+        <label for="name" class="col-md-8 mt-2">Image*</label>
       
         <div class="col-md-4 ">
-          <input type="text" placeholder="image" name="image">
+          <input type="url" placeholder="image" name="image" required>
         </div>
       
       </div>
@@ -51,10 +51,10 @@
       <div class="row align-items-center">
       
       
-        <label for="name" class="col-md-8 mt-2">Location</label>
+        <label for="name" class="col-md-8 mt-2">Location*</label>
       
         <div class="col-md-4 ">
-          <input type="text" placeholder="location" name="location">
+          <input type="text" placeholder="location" name="location" required>
         </div>
       
       </div>
@@ -62,10 +62,10 @@
       <div class="row align-items-center">
       
       
-        <label for="name" class="col-md-8 mt-2">Phone</label>
+        <label for="name" class="col-md-8 mt-2">Phone*</label>
       
         <div class="col-md-4 ">
-          <input type="text" placeholder="phone" name="phone">
+          <input type="tel" placeholder="phone" name="phone" required>
         </div>
       
       </div>
@@ -76,7 +76,7 @@
         <label for="name" class="col-md-8 mt-2">Google_map</label>
       
         <div class="col-md-4 ">
-          <input type="text" placeholder="google_map" name="google_map">
+          <input type="url" placeholder="google_map" name="google_map">
         </div>
       
       </div>
@@ -84,10 +84,10 @@
       <div class="row align-items-center">
       
       
-        <label for="name" class="col-md-8 mt-2">Rating</label>
+        <label for="name" class="col-md-8 mt-2">Rating*</label>
       
         <div class="col-md-4 ">
-          <input type="text" placeholder="rating" name="rating">
+          <input type="number" placeholder="rating" name="rating" min="0" max="5" step="0.1" required>
         </div>
       
       </div>
@@ -106,6 +106,7 @@
       
       <div class="d-flex justify-content-md-end mt-3" style="width: 440px; ;">
         <button type="submit" class="btn btn-primary" >Create</button>
+        <a href="/" class="my-auto">back</a>
       </div>
 
        
