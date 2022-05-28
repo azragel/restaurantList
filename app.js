@@ -16,8 +16,6 @@ require('./config/mongoose')
 // 載入資料庫model
 const restaurants = require('./models/restaurant')
 
-
-
 // 啟動handlebars套件
 const exphandlebar = require('express-handlebars')
 

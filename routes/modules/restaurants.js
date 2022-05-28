@@ -22,7 +22,6 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   const restaurantNew = req.body
-  
 
   return restaurants.create(restaurantNew)
     .then(() => res.redirect('/'))
@@ -43,9 +42,8 @@ router.put('/:id', (req, res) => {
   const id = req.params.id
   const restaurantUpdate = req.body
 
-  return restaurants.findByIdAndUpdate(id,restaurantUpdate)
-    
-    
+  return restaurants.findByIdAndUpdate(id, restaurantUpdate)
+
     .then(() => res.redirect(`/restaurants/${id}`))
     .catch(error => console.log(error))
 })
